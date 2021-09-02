@@ -3,5 +3,4 @@
 
 # Except for these:
 !/.gitignore
-!/Assets
 !/ProjectSettings
