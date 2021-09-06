@@ -1218,6 +1218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c34d80ef12eb140973acf4530569a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1773607968}
+  cam: {fileID: 963194228}
+  speed: 6
+  turnSmoothTime: 0.1
 --- !u!143 &1773607968
 CharacterController:
   m_ObjectHideFlags: 0
