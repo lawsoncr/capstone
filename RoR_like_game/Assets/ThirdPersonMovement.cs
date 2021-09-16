@@ -10,9 +10,11 @@ public class ThirdPersonMovement : MonoBehaviour
     public LayerMask groundMask;
     public float speed = 6f;
     public float jump = 3f;
-    public float gravity = -10f;
+    public float gravity = -12f;
     public float turnSmoothTime = 0.1f;
     public float groundDistance = 0.2f;
+
+    public float sprintSpeed = 13f;
 
 
     private float turnSmoothVelocity;
@@ -21,12 +23,15 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //checks if player is in contanct with the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrounded && velocity.y < 0){
             velocity.y = -2f;
         }
 
+        //varibles for charcter movement
+        
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
@@ -40,13 +45,25 @@ public class ThirdPersonMovement : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f).normalized * Vector3.forward.normalized;
             controller.Move(moveDir.normalized * speed * Time.deltaTime); 
-        }
 
+            //code for sprinting
+            if(Input.GetKeyDown(KeyCode.LeftShift) && isGrounded){
+                speed = sprintSpeed;
+            }
+
+            if(Input.GetKeyUp(KeyCode.LeftShift) && isGrounded){
+                speed = 6f;
+            }
+        }
+        //code for jumping
         if(Input.GetButtonDown("Jump") && isGrounded){
-            velocity.y = Mathf.Sqrt(jump * -7.0f * gravity);
-        }
 
+            velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
+        }
+        //code to caculate fall speed after jump
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        
     }
 }
