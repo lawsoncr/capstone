@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public float damage = 15f;
+    public float damageEnemy = 15f;
     public float range = 100f;
     public Camera tpsCam;
     public ParticleSystem muzzleFlash;
@@ -21,10 +21,16 @@ public class GunScript : MonoBehaviour
 
         RaycastHit hit;
         if (Physics.Raycast(tpsCam.transform.position, tpsCam.transform.forward, out hit, range)){
-            Debug.Log(hit.transform.name);
+
+            //if bullet hits enemy damage;
+            if(hit.transform.tag == "enemy"){
+                EnemyAI health = hit.transform.GetComponent<EnemyAI>();
+                health.TakeDamage(damageEnemy);
+            }
         }
 
         GameObject impactGo = Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(impactGo, 1f);
     }
+
 }
