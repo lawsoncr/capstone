@@ -15,6 +15,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public float groundDistance = 0.2f;
 
     public float sprintSpeed = 13f;
+    [SerializeField] public float health = 100f;
 
 
     private float turnSmoothVelocity;
@@ -24,7 +25,7 @@ public class ThirdPersonMovement : MonoBehaviour
     //Locks cursor to middle of screen
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -69,5 +70,9 @@ public class ThirdPersonMovement : MonoBehaviour
         //code to caculate fall speed after jump
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void DamagePlayer(float enemyDamage){
+        health -= enemyDamage;
     }
 }
