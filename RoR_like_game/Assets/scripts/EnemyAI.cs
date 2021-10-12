@@ -13,8 +13,9 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     public float enemyDamage = 15f;
     bool attackedAlready;
-
+    public GameObject fireball;
     public float attackRange = 6f;
+    public float fireballSpeed;
     public bool playerInAttackRange;
     public float health;
 
@@ -45,7 +46,13 @@ public class EnemyAI : MonoBehaviour
         transform.LookAt(player);
 
         if(!attackedAlready){
-            target.GetComponent<ThirdPersonMovement>().DamagePlayer(enemyDamage);
+            
+            GameObject projectile = Instantiate(fireball, transform.position, Quaternion.identity);
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            rb.velocity = transform.forward * fireballSpeed;
+
+            Destroy(projectile, 2f);
+
             Debug.Log("Attacked Player");
             attackedAlready = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

@@ -15,12 +15,9 @@ public class EnemySpawner : MonoBehaviour
     public float ranX;
     public float ranZ;
 
-    
-
-    
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 0f, 2f);
+        InvokeRepeating("SpawnEnemy", 0f, 3f);
     }
 
     private void SpawnEnemy(){
