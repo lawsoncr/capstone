@@ -267,7 +267,7 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   groundDistance: 0.2
   sprintSpeed: 13
-  health: 100
+  health: -2345
 --- !u!65 &6875954908561973940
 BoxCollider:
   m_ObjectHideFlags: 0

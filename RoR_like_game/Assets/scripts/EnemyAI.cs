@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     public float enemyDamage = 15f;
     bool attackedAlready;
     public GameObject fireball;
-    public float attackRange = 6f;
+    public float attackRange = 30f;
     public float fireballSpeed;
     public bool playerInAttackRange;
     public float health;
