@@ -72,7 +72,7 @@ public class ThirdPersonMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    public void DamagePlayer(float enemyDamage){
-        health -= enemyDamage;
+    public void DamagePlayer(float fireDamage){
+        health -= fireDamage;
     }
 }
