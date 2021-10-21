@@ -20,10 +20,10 @@ public class EnemySpawner : MonoBehaviour
     
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 5f, 4f);
+        InvokeRepeating("SpawnEnemy", 2f, 8f);
     }
 
-    private void SpawnEnemy(){
+    private void SpawnEnemy() {
         //Convert Player position to xyz cordinates
         playerPos = player.transform.position;
         playerX = playerPos.x;
@@ -35,8 +35,7 @@ public class EnemySpawner : MonoBehaviour
 
         //Spawn enemy at random range
         spawnPosition = new Vector3(ranX,0f,ranZ);
-        newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
-            
+        newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);  
           
     }
     
