@@ -15,12 +15,9 @@ public class EnemySpawner : MonoBehaviour
     public float ranX;
     public float ranZ;
 
-    
-
-    
     void Start()
-    {
-        InvokeRepeating("SpawnEnemy", 0f, 2f);
+    {    
+        InvokeRepeating("SpawnEnemy", 5f, 3f);   
     }
 
     private void SpawnEnemy(){
@@ -34,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
         ranZ = Random.Range(playerZ - 20, playerZ + 20);
 
         //Spawn enemy at random range
-        spawnPosition = new Vector3(ranX,0f,ranZ);
+        spawnPosition = new Vector3(ranX,1.5f,ranZ);
         newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
             
           

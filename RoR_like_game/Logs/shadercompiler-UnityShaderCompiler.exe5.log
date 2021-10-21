@@ -1,3 +1,7 @@
 Base path: 'C:/Users/claws/Unity_Stuff/2020.3.17f1/Editor/Data', plugins path 'C:/Users/claws/Unity_Stuff/2020.3.17f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 
+<<<<<<< HEAD
+=======
+Cmd: shutdown
+>>>>>>> 2f620af4f4c3cf8747c2f0f74ded9f23871bcf8e
