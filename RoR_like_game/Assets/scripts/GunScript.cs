@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public float damageEnemy = 15f;
+    public float damageEnemy;
     public float range = 100f;
     public Camera tpsCam;
     public ParticleSystem muzzleFlash;
@@ -31,6 +31,9 @@ public class GunScript : MonoBehaviour
 
         GameObject impactGo = Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(impactGo, 1f);
+    }
+    public void playerAttack(float plusAttack){
+        damageEnemy += plusAttack;
     }
 
 }

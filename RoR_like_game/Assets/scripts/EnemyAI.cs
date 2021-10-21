@@ -52,8 +52,6 @@ public class EnemyAI : MonoBehaviour
             rb.velocity = transform.forward * fireballSpeed;
 
             Destroy(projectile, 2f);
-
-            Debug.Log("Attacked Player");
             attackedAlready = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
