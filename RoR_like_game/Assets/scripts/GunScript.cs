@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public float damageEnemy;
+    [SerializeField] public float damageEnemy = 15f;
     public float range = 100f;
     public Camera tpsCam;
     public ParticleSystem muzzleFlash;
     public GameObject impact;
+
+    public void playerAttack(float plusAttack){
+        damageEnemy += plusAttack;
+    }
 
     // Update is called once per frame
     void Update()
@@ -32,8 +36,6 @@ public class GunScript : MonoBehaviour
         GameObject impactGo = Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(impactGo, 1f);
     }
-    public void playerAttack(float plusAttack){
-        damageEnemy += plusAttack;
-    }
+    
 
 }
