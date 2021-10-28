@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour
 {
-    public float damageEnemy;
+    [SerializeField] public float damageEnemy = 15f;
     public float range = 100f;
     public Camera tpsCam;
     public ParticleSystem muzzleFlash;

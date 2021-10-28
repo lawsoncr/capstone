@@ -5,20 +5,21 @@ using UnityEngine;
 public class AttackBuff : MonoBehaviour
 {
     public GameObject item;
-    public GameObject player;
     public float plusAttack = 15f;
+    public GameObject gun;
     // Start is called before the first frame update
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player"); 
+        gun = GameObject.FindGameObjectWithTag("Gun"); 
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         //Compares the tag of the object entering this collider.
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
-            player.GetComponent<GunScript>().playerAttack(plusAttack);
+            GunScript gunDamage = gun.GetComponent<GunScript>();
+            gunDamage.damageEnemy += 15f;
             Destroy(item);
         }
     }

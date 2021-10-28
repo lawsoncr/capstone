@@ -12,6 +12,7 @@ public class interactor : MonoBehaviour
     public Vector3 itemSpawnPos;
     public float chestY;
     public float chestZ; 
+    public bool accessChest;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +27,12 @@ public class interactor : MonoBehaviour
         chestY = chestPosition.y + 1f;
         chestZ = chestPosition.z + 1f;
         itemSpawnPos = new Vector3(chestPosition.x,chestY,chestZ);
+        
 
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50 , interactableLayerMask)){
             if (Input.GetKeyDown(KeyCode.E)){
-                    GameObject item = Instantiate(attackItem, itemSpawnPos, Quaternion.identity);
+                GameObject item = Instantiate(attackItem, itemSpawnPos, Quaternion.identity);
+                
             }
         }
     }
