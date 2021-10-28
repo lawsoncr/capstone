@@ -7,6 +7,10 @@ TagManager:
   - enemy
   - mapStuff
   - Gun
+<<<<<<< HEAD
+=======
+  - chest
+>>>>>>> f9025789e4a9435a5115ff8fd867ec7c05830edb
   layers:
   - Default
   - TransparentFX
