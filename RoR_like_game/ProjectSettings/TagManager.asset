@@ -6,6 +6,8 @@ TagManager:
   tags:
   - enemy
   - mapStuff
+  - Gun
+  - chest
   layers:
   - Default
   - TransparentFX
