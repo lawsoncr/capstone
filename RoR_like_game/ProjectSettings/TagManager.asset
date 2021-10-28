@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - enemy
-  - mapStuff
-  - Gun
-<<<<<<< HEAD
-=======
-  - chest
->>>>>>> f9025789e4a9435a5115ff8fd867ec7c05830edb
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - WhatIsPlayer
-  - WhatIsEnemy
-  - interactable
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
