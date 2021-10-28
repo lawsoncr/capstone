@@ -17,6 +17,8 @@ public class ThirdPersonMovement : MonoBehaviour
     public float sprintSpeed = 13f;
     [SerializeField] public float health = 100f;
 
+    public bool isDead = false;
+
 
     private float turnSmoothVelocity;
     private Vector3 velocity;
@@ -39,40 +41,40 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
         //varibles for charcter movement
+        if (isDead != true) {
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-       
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (direction.magnitude > 0) {
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f).normalized * Vector3.forward.normalized;
+                controller.Move(moveDir.normalized * speed * Time.deltaTime); 
 
-        if (direction.magnitude > 0){
+                //code for sprinting
+                if(Input.GetKeyDown(KeyCode.LeftShift)) {
+                    speed = sprintSpeed;
+                }
 
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f).normalized * Vector3.forward.normalized;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime); 
-
-            //code for sprinting
-            if(Input.GetKeyDown(KeyCode.LeftShift)){
-                speed = sprintSpeed;
+                if(Input.GetKeyUp(KeyCode.LeftShift)){
+                    speed = 6f;
+                }
             }
+            //code for jumping
+            if(Input.GetButtonDown("Jump") && isGrounded){
 
-            if(Input.GetKeyUp(KeyCode.LeftShift)){
-                speed = 6f;
+                velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
             }
+            //code to caculate fall speed after jump
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
         }
-        //code for jumping
-        if(Input.GetButtonDown("Jump") && isGrounded){
-
-            velocity.y = Mathf.Sqrt(jump * -2.0f * gravity);
-        }
-        //code to caculate fall speed after jump
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
     }
 
-    public void DamagePlayer(float enemyDamage){
+    public void DamagePlayer(float enemyDamage) {
         health -= enemyDamage;
+        if (health <= 0) { isDead = true; }
     }
 }

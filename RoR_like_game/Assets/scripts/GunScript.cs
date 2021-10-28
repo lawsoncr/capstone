@@ -8,13 +8,17 @@ public class GunScript : MonoBehaviour
     public Camera tpsCam;
     public ParticleSystem muzzleFlash;
     public GameObject impact;
+    public bool shooting = false;
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")){
+        if (Input.GetMouseButtonDown(0)) {
+            shooting = true;
             Shoot();
         }
+        else if (Input.GetMouseButtonUp(0)) { shooting = false; }
     }
     void Shoot(){
         muzzleFlash.Play();
@@ -32,5 +36,4 @@ public class GunScript : MonoBehaviour
         GameObject impactGo = Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(impactGo, 1f);
     }
-
 }

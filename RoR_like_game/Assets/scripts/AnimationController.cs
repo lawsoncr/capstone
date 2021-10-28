@@ -5,12 +5,20 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     private Animator animator;
+    private ThirdPersonMovement Player;
+    public float playerHealth;
+    public bool isPlayerDead;
 
+    public bool isShooting;
+
+    public GunScript gs;
     // Start is called before the first frame update
     void Start()
     {
         // get animator instance
         animator = GetComponent<Animator>();
+        Player = FindObjectOfType<ThirdPersonMovement>();
+        playerHealth = Player.health;
     }
 
     // Update is called once per frame
@@ -20,6 +28,11 @@ public class AnimationController : MonoBehaviour
         // *** Running Logic ***
         bool notRun = Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D);
         bool notSprint = Input.GetKeyUp(KeyCode.LeftShift);
+
+        // continously check if the player is dead or shooting.
+        playerDeath();
+        playerShooting();
+
         // If Running, play running animation
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == true) {
             animator.SetBool("isRunning", true);
@@ -45,8 +58,16 @@ public class AnimationController : MonoBehaviour
             animator.SetBool("isIdle", true);
             }
         }
-
     }
-
-
+    void playerDeath() {
+        playerHealth = Player.health;
+        if (playerHealth <= 0) { 
+            isPlayerDead = true;
+            animator.SetBool("isDead", isPlayerDead);
+        }
+    }
+    void playerShooting() {
+        isShooting = gs.shooting;
+        animator.SetBool("isShooting", isShooting);
+    }
 }

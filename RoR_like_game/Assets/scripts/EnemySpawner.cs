@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField]
     public GameObject enemy;
+    [SerializeField]
+    public GameObject enemy2;
     public GameObject newEnemy;
     public Vector3 spawnPosition;
     public int enemyCount;
@@ -35,7 +38,9 @@ public class EnemySpawner : MonoBehaviour
 
         //Spawn enemy at random range
         spawnPosition = new Vector3(ranX,0f,ranZ);
-        newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);  
+        int num = Random.Range(0, 2);
+        if (num == 0) newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);  
+        else newEnemy = Instantiate(enemy2, spawnPosition, Quaternion.identity);  
           
     }
     

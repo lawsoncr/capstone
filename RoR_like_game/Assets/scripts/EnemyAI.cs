@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    public ThirdPersonMovement TPP;
     public NavMeshAgent agent;
+    
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public GameObject target;
@@ -20,12 +22,16 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
 
     public bool isDead = false;
+    public bool isPlayerDead = false;
+
+    public bool shouldChase = false;
 
 
     void Awake()
     {
         //Refrence to player
         player = GameObject.Find("ThirdPersonPlayer").transform;
+        TPP = FindObjectOfType<ThirdPersonMovement>();
         target = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -34,25 +40,30 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDead) {
-            //CheckIfPlayer is in attack range
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        isPlayerDead = TPP.isDead;
+        if (isPlayerDead != true) {
+            if (!isDead) {
+                //CheckIfPlayer is in attack range
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-            if (playerInAttackRange) AttackPlayer();
+                if (playerInAttackRange) AttackPlayer();
 
-            ChasePlayer();
+                if (!isPlayerDead) ChasePlayer();
+            }
         }
     }
 
     private void ChasePlayer() {
-        if (!isDead) {
+        if (!isDead && !isPlayerDead) {
             agent.SetDestination(player.position);
             animator.SetBool("whaleRun", true);
         }
+        if (isPlayerDead) { agent.ResetPath(); animator.SetBool("whaleRun", false); animator.SetBool("whaleIdle", true); return; }
     }
 
     private void AttackPlayer() {
-        if (!isDead) {
+        int num = Random.Range(0, 2);
+        if (!isDead && !isPlayerDead) {
             transform.LookAt(player);
             if (!attackedAlready) {
                     if (playerInAttackRange) {
@@ -60,7 +71,8 @@ public class EnemyAI : MonoBehaviour
                         Debug.Log("Attacked Player");
                         attackedAlready = true;
                         Invoke(nameof(ResetAttack), timeBetweenAttacks);
-                        animator.SetBool("whaleAttack", true);
+                        if (num == 0) animator.SetBool("whaleAttack", true);
+                        else animator.SetBool("whaleTail", true);
                 }
             }
         }
@@ -68,11 +80,12 @@ public class EnemyAI : MonoBehaviour
     private void ResetAttack() {
         attackedAlready = false;
         animator.SetBool("whaleAttack", false);
+        animator.SetBool("whaleTail", false);
         animator.SetBool("whaleRun", true);
     }
 
     public void TakeDamage(float deductHealth) {
-         if (!isDead) {
+         if (!isDead && !isPlayerDead){
             health -= deductHealth;
             if (health <= 0) KillEnemy ();
         }
