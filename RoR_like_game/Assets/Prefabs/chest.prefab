@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.2835245, z: 1}
-  m_Center: {x: 0, y: 0.10823936, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-6586271754498912516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,11 @@ MonoBehaviour:
     m_Bits: 512
   attackItem: {fileID: 8290235247980733450, guid: 8047bfdab51c974458e64957e869f2e0, type: 3}
   chest: {fileID: 1470088900443605389}
+  player: {fileID: 0}
+  spawnName: {fileID: 0}
+  uniqueChest: {fileID: 0}
   chestPosition: {x: 0, y: 0, z: 0}
+  playerPosition: {x: 0, y: 0, z: 0}
   itemSpawnPos: {x: 0, y: 0, z: 0}
   chestY: 0
   chestZ: 0

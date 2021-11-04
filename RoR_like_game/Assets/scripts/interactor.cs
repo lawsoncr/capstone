@@ -8,7 +8,11 @@ public class interactor : MonoBehaviour
     UnityEvent onInteract;
     public GameObject attackItem;
     public GameObject chest;
+    public GameObject player;
+    public GameObject spawnName;
+    public GameObject uniqueChest;
     public Vector3 chestPosition;
+    public Vector3 playerPosition;
     public Vector3 itemSpawnPos;
     public float chestY;
     public float chestZ; 
@@ -17,22 +21,27 @@ public class interactor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
+
     // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
+        playerPosition = player.transform.position;
         chestPosition = chest.transform.position;
-        chestY = chestPosition.y + 1f;
-        chestZ = chestPosition.z + 1f;
-        itemSpawnPos = new Vector3(chestPosition.x,chestY,chestZ);
+        chestY = playerPosition.y + 1f;
+        chestZ = playerPosition.z - 1f;
+        itemSpawnPos = new Vector3(playerPosition.x,chestY,chestZ);
         
 
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 50 , interactableLayerMask)){
-            if (Input.GetKeyDown(KeyCode.E)){
-                GameObject item = Instantiate(attackItem, itemSpawnPos, Quaternion.identity);
-                
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 15 , interactableLayerMask)){
+            if ((playerPosition.z - chestPosition.z) < 5){
+                if (Input.GetKeyDown(KeyCode.E)){
+                    GameObject item = Instantiate(attackItem, itemSpawnPos, Quaternion.identity);
+                    Debug.Log(uniqueChest.name);
+                    
+                }
             }
         }
     }

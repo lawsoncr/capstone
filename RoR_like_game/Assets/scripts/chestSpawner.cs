@@ -14,6 +14,7 @@ public class chestSpawner : MonoBehaviour
     public float spawnerZ;
     public float ranX;
     public float ranZ;
+    public int nextNumber = 0;
 
     void Start()
     {   
@@ -37,6 +38,8 @@ public class chestSpawner : MonoBehaviour
         //Spawn chest at random range
         spawnPosition = new Vector3(ranX,1f,ranZ);
         newChest = Instantiate(chest, spawnPosition, Quaternion.identity);
+        newChest.name = "chest"+nextNumber;
+        nextNumber++;
             
           
     }
