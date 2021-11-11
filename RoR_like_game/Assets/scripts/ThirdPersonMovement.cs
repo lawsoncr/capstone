@@ -8,13 +8,14 @@ public class ThirdPersonMovement : MonoBehaviour
     public Transform cam;
     public Transform groundCheck;
     public LayerMask groundMask;
-    public float speed = 6f;
+    [SerializeField] public float speed = 6f;
+    [SerializeField] public float walkSpeed = 6f;
     public float jump = 3f;
     public float gravity = -12f;
     public float turnSmoothTime = 0.1f;
     public float groundDistance = 0.2f;
 
-    public float sprintSpeed = 13f;
+    [SerializeField] public float sprintSpeed = 12f;
     [SerializeField] public float health = 100f;
 
 
@@ -26,6 +27,7 @@ public class ThirdPersonMovement : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     // Update is called once per frame
@@ -59,7 +61,7 @@ public class ThirdPersonMovement : MonoBehaviour
             }
 
             if(Input.GetKeyUp(KeyCode.LeftShift)){
-                speed = 6f;
+                speed = (sprintSpeed/2f);
             }
         }
         //code for jumping

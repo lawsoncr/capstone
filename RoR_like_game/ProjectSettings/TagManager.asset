@@ -8,6 +8,9 @@ TagManager:
   - mapStuff
   - Gun
   - chest
+  - text
+  - SkyboxCamera
+  - bossSpawner
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - WhatIsPlayer
   - WhatIsEnemy
   - interactable
-  - 
+  - bossLayer
   - 
   - 
   - 

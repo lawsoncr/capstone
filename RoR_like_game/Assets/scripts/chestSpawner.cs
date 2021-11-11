@@ -18,7 +18,7 @@ public class chestSpawner : MonoBehaviour
 
     void Start()
     {   
-        while(chestCount <= 5){
+        while(chestCount <= 15){
             InvokeRepeating("SpawnChest", 0f, 0f);
             chestCount ++;   
         } 
@@ -32,11 +32,11 @@ public class chestSpawner : MonoBehaviour
         spawnerZ = spawnerPos.z;
 
         //grab random values in range of player
-        ranX = Random.Range(spawnerX - 70, spawnerX + 70);
-        ranZ = Random.Range(spawnerZ - 70, spawnerZ + 70);
+        ranX = Random.Range(spawnerX - 150, spawnerX + 150);
+        ranZ = Random.Range(spawnerZ - 150, spawnerZ + 150);
 
         //Spawn chest at random range
-        spawnPosition = new Vector3(ranX,1f,ranZ);
+        spawnPosition = new Vector3(ranX,5f,ranZ);
         newChest = Instantiate(chest, spawnPosition, Quaternion.identity);
         newChest.name = "chest"+nextNumber;
         nextNumber++;
