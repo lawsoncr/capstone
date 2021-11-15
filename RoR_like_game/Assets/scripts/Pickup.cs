@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {//Flag used to tell if the object can be interacted with or not.
-    public bool isInteractable = false;
     public GameObject item;
     private void OnTriggerEnter(Collider other)
     {
@@ -12,7 +11,7 @@ public class Pickup : MonoBehaviour
         if(other.tag == "Player")
         {
             //turns on interactivity 
-            isInteractable = true;
+
             Destroy(item);
         }
     }
@@ -22,7 +21,6 @@ public class Pickup : MonoBehaviour
         if(other.tag == "Player")
         {
             //turns off interactivity 
-            isInteractable = false;
         }
     }
 }

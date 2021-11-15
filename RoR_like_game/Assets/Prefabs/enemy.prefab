@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1789561879203485440}
   - component: {fileID: 4296071628643181531}
   - component: {fileID: 5540056633945754540}
+  - component: {fileID: 5696951006274820752}
   m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
@@ -100,6 +101,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5696951006274820752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813897075297629362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73679465e70108458574becaf0d22fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 0
+  maxHealth: 50
+  healthBarUI: {fileID: 0}
+  slider: {fileID: 7715423657925480821}
 --- !u!1 &1012450779637850303
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +296,6 @@ GameObject:
   - component: {fileID: 6566839914734829248}
   - component: {fileID: 6566839914734829249}
   - component: {fileID: 6566839914734829250}
-  - component: {fileID: 2225202987664161660}
   m_Layer: 8
   m_Name: enemy
   m_TagString: enemy
@@ -415,22 +431,6 @@ MonoBehaviour:
   fireballSpeed: 15
   playerInAttackRange: 0
   health: 50
---- !u!114 &2225202987664161660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6566839914734829251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73679465e70108458574becaf0d22fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHealth: 0
-  maxHealth: 50
-  healthBarUI: {fileID: 0}
-  slider: {fileID: 0}
 --- !u!1 &7583106238964847113
 GameObject:
   m_ObjectHideFlags: 0
